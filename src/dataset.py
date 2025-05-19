@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from PIL import Image
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from config import IMG_SIZE
 
@@ -37,3 +37,16 @@ class RetinopathyDataset(Dataset):
             image = self.transform(image)
 
         return image, label
+
+def get_dataloaders(train_csv='data/train.csv', val_csv='data/test.csv', img_dir='colored_images', batch_size=32):
+    """
+    Retorna los DataLoaders para entrenamiento y validación
+    usando los archivos .csv ya generados.
+    """
+    train_dataset = RetinopathyDataset(csv_file=train_csv, img_dir=img_dir)
+    val_dataset = RetinopathyDataset(csv_file=val_csv, img_dir=img_dir)
+
+    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=batch_size)
+
+    return train_loader, val_loader

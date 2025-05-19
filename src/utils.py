@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import seaborn as sns
 import numpy as np
+import torch
 
 def calculate_metrics(y_true, y_pred, target_names=None):
     """
@@ -76,3 +77,15 @@ def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, v
     plt.title('Accuracy Curve')
 
     plt.show()
+
+
+def save_model(model, path="model.pth"):
+    """
+    Save the PyTorch model to the given path.
+
+    Args:
+        model (torch.nn.Module): Trained PyTorch model.
+        path (str): Path to save the model (.pth file).
+    """
+    torch.save(model.state_dict(), path)
+    print(f"✅ Model saved to {path}")

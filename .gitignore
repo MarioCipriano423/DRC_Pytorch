@@ -3,3 +3,6 @@
 /data/colored_images
 /data/archive.zip
 /data/labels.csv
+/data/train.csv
+/data/test.csv
+/data/predict.csv

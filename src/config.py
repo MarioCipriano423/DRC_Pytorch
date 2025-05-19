@@ -1,5 +1,3 @@
-# config.py
-
 import os
 
 # Dataset path (where the Kaggle dataset should be located)
