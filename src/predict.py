@@ -10,8 +10,8 @@ label_map = {
     0: "No_DR",
     1: "Mild",
     2: "Moderate",
-    3: "Proliferate_DR",
-    4: "Severe"
+    3: "Severe",
+    4: "Proliferate_DR"
 }
 
 def load_model(path="model.pth", device='cpu'):

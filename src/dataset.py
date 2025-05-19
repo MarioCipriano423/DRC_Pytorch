@@ -3,14 +3,14 @@ import pandas as pd
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
-from config import IMG_SIZE
+from config import IMAGE_SIZE
 
 label_to_folder = {
     0: "No_DR",
     1: "Mild",
     2: "Moderate",
-    3: "Proliferate_DR",
-    4: "Severe"
+    3: "Severe",
+    4: "Proliferate_DR"
 }
 
 class RetinopathyDataset(Dataset):
@@ -18,7 +18,7 @@ class RetinopathyDataset(Dataset):
         self.labels = pd.read_csv(csv_file)
         self.img_dir = img_dir
         self.transform = transform or transforms.Compose([
-            transforms.Resize((IMG_SIZE, IMG_SIZE)),
+            transforms.Resize((IMAGE_SIZE)),
             transforms.ToTensor()
         ])
 
@@ -29,8 +29,13 @@ class RetinopathyDataset(Dataset):
         img_file = self.labels.iloc[idx, 0]
         label = int(self.labels.iloc[idx, 1])
         folder = label_to_folder[label]
-        img_path = os.path.join(self.img_dir, folder, img_file)
         
+        # 🔧 Asegúrate de agregar la extensión si no viene en el CSV
+        if not img_file.endswith(".png"):
+            img_file += ".png"
+
+        img_path = os.path.join(self.img_dir, folder, img_file)
+
         image = Image.open(img_path).convert("RGB")
 
         if self.transform:
@@ -38,7 +43,7 @@ class RetinopathyDataset(Dataset):
 
         return image, label
 
-def get_dataloaders(train_csv='data/train.csv', val_csv='data/test.csv', img_dir='colored_images', batch_size=32):
+def get_dataloaders(train_csv='data/train.csv', val_csv='data/test.csv', img_dir='data/colored_images', batch_size=32):
     """
     Retorna los DataLoaders para entrenamiento y validación
     usando los archivos .csv ya generados.
