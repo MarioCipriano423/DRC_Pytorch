@@ -9,3 +9,4 @@
 
 /src/_pycache_/
 *.pyc
+*.pth
