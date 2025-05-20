@@ -5,17 +5,7 @@ import numpy as np
 import torch
 
 def calculate_metrics(y_true, y_pred, target_names=None):
-    """
-    Calcula y retorna métricas principales para clasificación multiclase.
-    
-    Args:
-        y_true (list or np.array): etiquetas reales.
-        y_pred (list or np.array): etiquetas predichas.
-        target_names (list): nombres de clases para el reporte.
 
-    Returns:
-        dict: con accuracy, reporte y matriz de confusión.
-    """
     acc = accuracy_score(y_true, y_pred)
     report = classification_report(y_true, y_pred, target_names=target_names, zero_division=0)
     cm = confusion_matrix(y_true, y_pred)
@@ -27,33 +17,19 @@ def calculate_metrics(y_true, y_pred, target_names=None):
     }
 
 def plot_confusion_matrix(cm, class_names, figsize=(8,6), fontsize=12):
-    """
-    Grafica la matriz de confusión con colores y etiquetas legibles.
-    
-    Args:
-        cm (np.array): matriz de confusión.
-        class_names (list): nombres de clases.
-        figsize (tuple): tamaño de la figura.
-        fontsize (int): tamaño de texto.
-    """
+
     plt.figure(figsize=figsize)
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
                 xticklabels=class_names, yticklabels=class_names)
     plt.ylabel('True label', fontsize=fontsize)
     plt.xlabel('Predicted label', fontsize=fontsize)
     plt.title('Confusion Matrix', fontsize=fontsize+2)
-    plt.show()
+    plt.tight_layout()
+    plt.savefig("metricsPlots/confusion_matrix.png")  
+    plt.close()
 
 def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, val_accuracies=None):
-    """
-    Grafica las curvas de loss y accuracy durante entrenamiento.
-    
-    Args:
-        train_losses (list): pérdidas en cada epoch o batch de entrenamiento.
-        val_losses (list, opcional): pérdidas en validación.
-        train_accuracies (list, opcional): accuracies en entrenamiento.
-        val_accuracies (list, opcional): accuracies en validación.
-    """
+
     epochs = range(1, len(train_losses) + 1)
     plt.figure(figsize=(12,5))
 
@@ -76,16 +52,11 @@ def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, v
     plt.legend()
     plt.title('Accuracy Curve')
 
-    plt.show()
+    plt.tight_layout()
+    plt.savefig("metricsPlots/training_curves.png")  
+    plt.close()
 
+def save_model(model, path):
 
-def save_model(model, path="model.pth"):
-    """
-    Save the PyTorch model to the given path.
-
-    Args:
-        model (torch.nn.Module): Trained PyTorch model.
-        path (str): Path to save the model (.pth file).
-    """
     torch.save(model.state_dict(), path)
     print(f"✅ Model saved to {path}")

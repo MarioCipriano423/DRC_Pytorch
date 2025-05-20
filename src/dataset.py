@@ -30,7 +30,6 @@ class RetinopathyDataset(Dataset):
         label = int(self.labels.iloc[idx, 1])
         folder = label_to_folder[label]
         
-        # 🔧 Asegúrate de agregar la extensión si no viene en el CSV
         if not img_file.endswith(".png"):
             img_file += ".png"
 
@@ -44,10 +43,6 @@ class RetinopathyDataset(Dataset):
         return image, label
 
 def get_dataloaders(train_csv='data/train.csv', val_csv='data/test.csv', img_dir='data/colored_images', batch_size=32):
-    """
-    Retorna los DataLoaders para entrenamiento y validación
-    usando los archivos .csv ya generados.
-    """
     train_dataset = RetinopathyDataset(csv_file=train_csv, img_dir=img_dir)
     val_dataset = RetinopathyDataset(csv_file=val_csv, img_dir=img_dir)
 
