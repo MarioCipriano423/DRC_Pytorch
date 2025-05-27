@@ -1,6 +1,3 @@
-start:
-	python app.py
-
 split:
 	python data/splitDataset.py
 

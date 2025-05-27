@@ -96,7 +96,7 @@ if __name__ == "__main__":
     print(f"Predicted class: {pred_class_id} ({pred_class_name})")
     print(f"Trust: {pred_confidence:.4f} ({pred_confidence*100:.2f}%)")
 
-    print("\n🥇 Top-3 predictions:")
+    print("\nTop-3 predictions:")
     for i, (class_name, prob) in enumerate(top3_classes):
         print(f" {i+1}. {class_name} ({prob*100:.2f}%)")
 
