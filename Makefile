@@ -9,3 +9,6 @@ train:
 
 predict:
 	python src/predict.py
+
+sysTest:
+	python app.py
