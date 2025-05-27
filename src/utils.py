@@ -25,7 +25,7 @@ def plot_confusion_matrix(cm, class_names, figsize=(8,6), fontsize=12):
     plt.xlabel('Predicted label', fontsize=fontsize)
     plt.title('Confusion Matrix', fontsize=fontsize+2)
     plt.tight_layout()
-    plt.savefig("metricsPlots/demo_confusion_matrix.png")  
+    plt.savefig("metricsPlots/confusion_matrix.png")  
     plt.close()
 
 def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, val_accuracies=None):
@@ -53,7 +53,7 @@ def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, v
     plt.title('Accuracy Curve')
 
     plt.tight_layout()
-    plt.savefig("metricsPlots/demo_training_curves.png")  
+    plt.savefig("metricsPlots/training_curves.png")  
     plt.close()
 
 def save_model(model, path):

@@ -68,7 +68,7 @@ def train_model(epochs=10, batch_size=32, lr=0.001, device='cuda' if torch.cuda.
         print(f"   Train Loss: {epoch_loss:.4f}, Train Acc: {metrics['accuracy']:.4f}")
         print(f"   Val   Loss: {val_epoch_loss:.4f}, Val   Acc: {val_metrics['accuracy']:.4f}")
 
-    model_name = "DRC-model-demo"
+    model_name = "DRC-model"
     model_path = "models/"+model_name+".pth"
     save_model(model, model_path)
     print("Model trained and saved as "+model_name)
