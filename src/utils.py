@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import seaborn as sns
-import numpy as np
 import torch
+from .config import config
 
 def calculate_metrics(y_true, y_pred, target_names=None):
 
@@ -25,7 +25,7 @@ def plot_confusion_matrix(cm, class_names, figsize=(8,6), fontsize=12):
     plt.xlabel('Predicted label', fontsize=fontsize)
     plt.title('Confusion Matrix', fontsize=fontsize+2)
     plt.tight_layout()
-    plt.savefig("metricsPlots/confusion_matrix.png")  
+    plt.savefig(config.CONFUSION_MATRIX_PATH)  
     plt.close()
 
 def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, val_accuracies=None):
@@ -53,7 +53,7 @@ def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, v
     plt.title('Accuracy Curve')
 
     plt.tight_layout()
-    plt.savefig("metricsPlots/training_curves.png")  
+    plt.savefig(config.TRAINING_CURVES_PATH)  
     plt.close()
 
 def save_model(model, path):

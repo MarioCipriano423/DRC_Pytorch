@@ -1,18 +1,37 @@
 import os
 
-DATA_DIR = os.path.join(os.getcwd(), 'data')
+class config:
+    ## BASE WORKDIR ##
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-TRAIN_DIR = os.path.join(DATA_DIR, 'train')
-TEST_DIR = os.path.join(DATA_DIR, 'test')
+    # data 
+    DATA_DIR = os.path.join(BASE_DIR,'..','data')
 
-MODEL_PATH = os.path.join(os.getcwd(), 'models', 'diabetic_model.pth')
+    # metrics 
+    METRICS_DIR = os.path.join(BASE_DIR,'..','metrics')
+    CONFUSION_MATRIX_PATH = os.path.join(METRICS_DIR,'confusion_matrix.png')
+    TRAINING_CURVES_PATH = os.path.join(METRICS_DIR,'training_curves.png')
+    
+    # models 
+    MODEL_DIR = os.path.join(BASE_DIR,'..','models')
 
-IMAGE_SIZE = (224, 224)
+    # predictions 
+    PREDICTIONS_DIR = os.path.join(BASE_DIR,'..','predictions')
 
-CLASSES = ["No DR", "Mild", "Moderate", "Severe", "Proliferative DR"]
+    # Testing DIR
+    TEST_DIR = os.path.join(BASE_DIR,'..','testing')
 
-BATCH_SIZE = 32
-NUM_EPOCHS = 10
-LEARNING_RATE = 1e-4
+    # Another stuff
+    CLASSES = ["No DR", "Mild", "Moderate", "Severe", "Proliferative DR"]
 
-SEED = 42
+
+    # Train parameters
+    BATCH_SIZE = 32
+    NUM_EPOCHS = 10
+    LEARNING_RATE = 1e-4
+    SEED = 42
+
+    # dataset parameters
+    IMAGE_SIZE = (224, 224)
+
+    

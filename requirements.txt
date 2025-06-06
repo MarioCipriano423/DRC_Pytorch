@@ -1,20 +1,9 @@
-# Ciencia de datos y utilidades
 numpy
 pandas
 matplotlib
 scikit-learn
-scipy
 
-# Visualización avanzada
 seaborn
-plotly
 
-# Notebooks y herramientas
-jupyter
-ipykernel
-notebook
-nbconvert
-
-# Otras utilidades útiles
 tqdm
 requests

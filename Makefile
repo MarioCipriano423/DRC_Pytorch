@@ -1,3 +1,6 @@
+run:
+	python run.py
+
 split:
 	python data/splitDataset.py
 
