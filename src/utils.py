@@ -4,29 +4,34 @@ import seaborn as sns
 import torch
 from .config import config
 
-def calculate_metrics(y_true, y_pred, target_names=None):
+class MetricsEvaluator:
+    def __init__(self, y_true, y_pred, target_names=None):
+        self.y_true = y_true
+        self.y_pred = y_pred
+        self.target_names = target_names
 
-    acc = accuracy_score(y_true, y_pred)
-    report = classification_report(y_true, y_pred, target_names=target_names, zero_division=0)
-    cm = confusion_matrix(y_true, y_pred)
+    def calculate_metrics(self):
+        acc = accuracy_score(self.y_true, self.y_pred)
+        report = classification_report(self.y_true, self.y_pred, target_names=self.target_names, zero_division=0)
+        cm = confusion_matrix(self.y_true, self.y_pred)
 
-    return {
-        'accuracy': acc,
-        'classification_report': report,
-        'confusion_matrix': cm
-    }
+        return {
+            'accuracy': acc,
+            'classification_report': report,
+            'confusion_matrix': cm
+        }
 
-def plot_confusion_matrix(cm, class_names, figsize=(8,6), fontsize=12):
+    def plot_confusion_matrix(cm, class_names, figsize=(8,6), fontsize=12):
 
-    plt.figure(figsize=figsize)
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=class_names, yticklabels=class_names)
-    plt.ylabel('True label', fontsize=fontsize)
-    plt.xlabel('Predicted label', fontsize=fontsize)
-    plt.title('Confusion Matrix', fontsize=fontsize+2)
-    plt.tight_layout()
-    plt.savefig(config.CONFUSION_MATRIX_PATH)  
-    plt.close()
+        plt.figure(figsize=figsize)
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                    xticklabels=class_names, yticklabels=class_names)
+        plt.ylabel('True label', fontsize=fontsize)
+        plt.xlabel('Predicted label', fontsize=fontsize)
+        plt.title('Confusion Matrix', fontsize=fontsize+2)
+        plt.tight_layout()
+        plt.savefig(config.CONFUSION_MATRIX_PATH)  
+        plt.close()
 
 def plot_training_curves(train_losses, val_losses=None, train_accuracies=None, val_accuracies=None):
 
