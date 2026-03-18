@@ -1,22 +1,57 @@
-services:
-  dev:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: retinopathy-base
-    container_name: retinopathy-dev
-    volumes:
-      - .:/app
-    working_dir: /app
-    tty: true
+version: "3.9"
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: retinopathy-base
-    container_name: retinopathy-app
-    volumes:
-      - .:/app
-    working_dir: /app
-    tty: true
+services:
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - "8004:8004"
+    env_file:
+      - .env
+    depends_on:
+      - preprocessing_service
+      - trainging_service
+      - prediction_service
+      - visualization_service
+    networks:
+      - dl_pipeline_net
+
+  preprocessing_service:
+    build: ./preprocessing_service
+    container_name: preprocessing_service
+    ports:
+      - "8005:8005"
+    env_file:
+      - .env
+    networks:
+      - dl_pipeline_net
+
+  trainging_service:
+    build: ./trainging_service
+    container_name: trainging_service
+    ports:
+      - "8006:8006"
+    env_file:
+      - .env
+    networks:
+      - dl_pipeline_net
+
+  prediction_service:
+    build: ./prediction_service
+    container_name: prediction_service
+    ports:
+      - "8007:8007"
+    env_file:
+      - .env
+    networks:
+      - dl_pipeline_net
+
+  visualization_service:
+    build: ./visualization_service
+    container_name: visualization_service
+    ports:
+      - "8008:8008"
+    env_file:
+      - .env
+    networks:
+      - dl_pipeline_net

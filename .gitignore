@@ -1,5 +1,7 @@
-/data/colored_images
 /data/archive.zip
+/data/*.png
+/data/colored_images
+
 /data/labels.csv
 /data/train.csv
 /data/test.csv
@@ -9,4 +11,3 @@
 *.pyc
 *.pth
 
-*.png
