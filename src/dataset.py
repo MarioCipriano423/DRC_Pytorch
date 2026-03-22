@@ -1,3 +1,10 @@
+# pyright: reportMissingImports=false
+# pyright: reportMissingModuleSource=false
+
+'''
+To preprocessing service... 
+'''
+
 import os
 import pandas as pd
 from PIL import Image

@@ -1,3 +1,10 @@
+# pyright: reportMissingImports=false
+# pyright: reportMissingModuleSource=false
+
+'''
+To presict service... 
+'''
+
 import os
 import pandas as pd
 from model import RetinopathyCNN

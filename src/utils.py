@@ -1,3 +1,10 @@
+# pyright: reportMissingImports=false
+# pyright: reportMissingModuleSource=false
+
+'''
+To visualization service... 
+'''
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import seaborn as sns

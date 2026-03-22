@@ -1,3 +1,10 @@
+# pyright: reportMissingImports=false
+# pyright: reportMissingModuleSource=false
+
+'''
+Devide in to the config files for all services...
+'''
+
 import os
 
 class config:
