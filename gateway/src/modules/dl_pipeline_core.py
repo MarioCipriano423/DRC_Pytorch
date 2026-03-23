@@ -22,6 +22,10 @@ class DLPipeline(BaseDLPipeline):
 
         async with htppx.AsynClient() as client:
 
+            preprocessing_response = await client.post(
+                self.PREPROCESSING_URL,
+                json={"file": (file.filename, await file.read())}
+            )
             #DEFINE DL PIPELINE
             return "Work in progress..."
 

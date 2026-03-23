@@ -8,19 +8,13 @@ services:
       - "8004:8004"
     env_file:
       - .env
-    depends_on:
-      - preprocessing_service
-      - trainging_service
-      - prediction_service
-      - visualization_service
     networks:
       - dl_pipeline_net
 
   preprocessing_service:
     build: ./preprocessing_service
     container_name: preprocessing_service
-    ports:
-      - "8005:8005"
+    volumes: -dl_pipeline_vol:/datasets
     env_file:
       - .env
     networks:
@@ -29,8 +23,7 @@ services:
   train_service:
     build: ./trainging_service
     container_name: trainging_service
-    ports:
-      - "8006:8006"
+    volumes: -dl_pipeline_vol:/datasets
     env_file:
       - .env
     networks:
@@ -39,8 +32,7 @@ services:
   inference_service:
     build: ./prediction_service
     container_name: prediction_service
-    ports:
-      - "8007:8007"
+    volumes: -dl_pipeline_vol:/datasets
     env_file:
       - .env
     networks:
@@ -49,9 +41,16 @@ services:
   visualization_service:
     build: ./visualization_service
     container_name: visualization_service
+    volumes: -dl_pipeline_vol:/datasets
     ports:
       - "8008:8008"
     env_file:
       - .env
     networks:
       - dl_pipeline_net
+
+volumes:
+  dl_pipeline_vol:
+
+networks:
+  dl_pipeline_net:
