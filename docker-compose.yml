@@ -26,7 +26,7 @@ services:
     networks:
       - dl_pipeline_net
 
-  trainging_service:
+  train_service:
     build: ./trainging_service
     container_name: trainging_service
     ports:
@@ -36,7 +36,7 @@ services:
     networks:
       - dl_pipeline_net
 
-  prediction_service:
+  inference_service:
     build: ./prediction_service
     container_name: prediction_service
     ports:
