@@ -25,8 +25,8 @@ origins.add_middleware(
 )
 
 @app.post("/run-dl-pipeline")
-async def run_dl_pipeline(file: UploadFile = File(...)):
-    result = await dl_pipeline.run_dl_pipeline(file)
+async def run_dl_pipeline():
+    result = await dl_pipeline.run_dl_pipeline()
     
     image_url = result["internal_plot_url"]
 
