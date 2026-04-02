@@ -12,10 +12,10 @@ load_dotenv()
 class DLPipeline(BaseDLPipeline):
 
     DATASET_PATH = "/data/"
-    PREPROCESSING_URL = ""
-    TRAINING_URL = ""
-    INFERENCE_URL = ""
-    VISUALIZATION_URL = ""
+    PREPROCESSING_URL = "https://PREPROCESSING_SERVICE_URL:8005/preprocesing"
+    TRAINING_URL = "https://TRAINING_SERVICE_URL:8006/testing"
+    INFERENCE_URL = "https://INFERENCE_SERVICE_URL:8007/inference"
+    VISUALIZATION_URL = "https://VISUALIZATION_SERVICE_URL:8008/visualization"
     #URLs
 
     def __init__(self):
@@ -54,4 +54,3 @@ class DLPipeline(BaseDLPipeline):
 
             #DEFINE DL PIPELINE
             return result, "Work in progress..."
-
